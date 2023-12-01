@@ -65,9 +65,9 @@ elif sel_op == gop[3]:
 
 
 
-    sel_op2 = c2.radio("select the type of plot for vote",gop)
+sel_op2 = c2.radio("select the type of plot for vote",gop)
 
-    subset2 = df.sort_values(by='vote_count')[:50]
+subset2 = df.sort_values(by='vote_count')[:50]
 
 if sel_op2 == gop[0]:
     subset2 = df.sort_values(by='vote_count')[:50]
@@ -94,17 +94,17 @@ num_cols = df.select_dtypes(include=np.number).columns.tolist()
 with t1:
     c1,c2 = st.columns(2)
     col1=c1.radio("select the first column for Scatter plot",num_cols)
-    col2 = c2.radio("select the first column for Scatter plot",num_cols)
+    col2 = c2.radio("select the two column for Scatter plot",num_cols)
     fig = px.scatter(df,x=col2,y=col2,title=f'{col1}vs{col2}')
     st.plotly_chart(fig,use_container_width=True)
-    with t2:
-         c1, c2, c3 = st.columns(3)
-    col1 = c1.selectbox("Select the first column for 3d plot", num_cols)
-    col2 = c2.selectbox("select the second column for 3d plot", num_cols)
-    col3 = c3.selectbox("select the third column for 3d plot", num_cols)
-    fig = px.scatter_3d(df, x=col1, y =col2,z=col3,title=f'{col1} vs {col2} vs {col3}',
-                        height=700)
-    st.plotly_chart(fig,use_container_width=True)
+with t2:
+        c1, c2, c3 = st.columns(3)
+col1 = c1.selectbox("Select the first column for 3d plot", num_cols)
+col2 = c2.selectbox("select the second column for 3d plot", num_cols)
+col3 = c3.selectbox("select the third column for 3d plot", num_cols)
+fig = px.scatter_3d(df, x=col1, y =col2,z=col3,title=f'{col1} vs {col2} vs {col3}',
+                    height=700)
+st.plotly_chart(fig,use_container_width=True)
 
 
 # how to run app
